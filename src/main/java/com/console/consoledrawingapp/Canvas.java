@@ -2,6 +2,7 @@ package com.console.consoledrawingapp;
 
 import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.commands.impl.RectangleCommand;
+import com.console.consoledrawingapp.exception.InvalidBoundaryException;
 
 public class Canvas {
 
@@ -64,7 +65,7 @@ public class Canvas {
 
     public void fillCanvas(int x, int y, char color) {
         if (!isValidAreaToFill(x, y)) {
-            return;
+            throw new InvalidBoundaryException("Please enter coordinates within canvas boundary to fill");
         }
         
         if (this.canvas[y][x] == ' ') {

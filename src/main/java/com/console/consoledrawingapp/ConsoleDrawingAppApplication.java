@@ -2,14 +2,13 @@ package com.console.consoledrawingapp;
 
 import java.util.Scanner;
 
-import javax.management.InstanceNotFoundException;
-
 import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.commands.impl.CanvasCommand;
 import com.console.consoledrawingapp.commands.impl.FillAreaCommand;
 import com.console.consoledrawingapp.commands.impl.LineCommand;
 import com.console.consoledrawingapp.commands.impl.QuitCommand;
 import com.console.consoledrawingapp.commands.impl.RectangleCommand;
+import com.console.consoledrawingapp.exception.InvalidBoundaryException;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
 
 // @SpringBootApplication
@@ -26,12 +25,11 @@ public class ConsoleDrawingAppApplication {
 				try {
 					Command command = CommandFactory.getCommand(userInput, sc);
 					app.processCommand(command);
-				} catch (InvalidCommandException ex) {
+				} catch (InvalidCommandException | InvalidBoundaryException ex) {
 					System.out.println(ex.getMessage());
 				}
 			}
 		}
-		
 	}
 
 	public void processCommand(Command command) {
@@ -61,6 +59,7 @@ public class ConsoleDrawingAppApplication {
 			int y = areaCommand.getY();
 			char c = areaCommand.getColor();
 			this.canvas.fillCanvas(x, y, c);
+			this.canvas.printCanvas();
 		}
 	} 
 }
