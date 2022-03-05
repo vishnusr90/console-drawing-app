@@ -1,12 +1,9 @@
 package com.console.consoledrawingapp.shapes.impl;
 
-import com.console.consoledrawingapp.commands.Command;
-import com.console.consoledrawingapp.commands.impl.RectangleCommand;
-import com.console.consoledrawingapp.exception.InvalidBoundaryException;
+import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.Shape;
 
 public class Canvas implements Shape{
-
     private char[][] canvas;
     private int width;
     private int height;
@@ -69,6 +66,9 @@ public class Canvas implements Shape{
     }
 
     public void addLine(int x1, int y1, int x2, int y2) {
+        if (!isValidLine(x1, y1, x2, y2)) {
+            throw new InvalidShapeException("Please enter correct coordinates !");
+        }
         for(int i=y1; i<=y2;i++) {
             for(int j =x1;j<=x2;j++) {
                 canvas[i][j] = LINE;
@@ -87,7 +87,7 @@ public class Canvas implements Shape{
         if (!isValidAreaToFill(x, y)) {
             return;
         }
-        
+
         if (this.canvas[y][x] == ' ') {
             this.canvas[y][x] = color;
         }
@@ -112,9 +112,20 @@ public class Canvas implements Shape{
     }
 
     public boolean isValidAreaToFill(int x, int y) {
-        return x >=1 && x < this.width+2
-                && y >=1 && y < this.height+2 
+        return x >=1 && x < (this.width+2)
+                && y >=1 && y < (this.height+2) 
                 && this.canvas[y][x] == ' ';
+    }
+
+    public boolean isValidLine(int x1, int y1, int x2, int y2) {
+        return x1 >= 1
+            && x1 < (this.width+2)
+            && x2 >=1 
+            && x2 < (this.width+2)
+            && y1 >= 1
+            && y1 < (this.width+2)
+            && y2 >=1 
+            && y2 < (this.width+2);
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.commands.impl.CanvasCommand;
 import com.console.consoledrawingapp.commands.impl.FillAreaCommand;
 import com.console.consoledrawingapp.commands.impl.LineCommand;
-import com.console.consoledrawingapp.commands.impl.QuitCommand;
 import com.console.consoledrawingapp.commands.impl.RectangleCommand;
 import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.impl.BucketFill;

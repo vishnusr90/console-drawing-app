@@ -4,7 +4,6 @@ import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
 
 public class RectangleCommand implements Command {
-
     private int x1;
     private int y1;
     private int x2;
@@ -44,5 +43,4 @@ public class RectangleCommand implements Command {
             && commands[2] != " " 
             && commands[3] != " "; 
     }
-    
 }

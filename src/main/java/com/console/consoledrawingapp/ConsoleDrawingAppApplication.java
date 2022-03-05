@@ -5,13 +5,11 @@ import java.util.Scanner;
 import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.commands.CommandFactory;
 import com.console.consoledrawingapp.commands.impl.CanvasCommand;
-import com.console.consoledrawingapp.commands.impl.FillAreaCommand;
-import com.console.consoledrawingapp.commands.impl.LineCommand;
 import com.console.consoledrawingapp.commands.impl.QuitCommand;
-import com.console.consoledrawingapp.commands.impl.RectangleCommand;
 import com.console.consoledrawingapp.exception.CanvasNotFoundException;
 import com.console.consoledrawingapp.exception.InvalidBoundaryException;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
+import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.Shape;
 import com.console.consoledrawingapp.shapes.ShapeFactory;
 import com.console.consoledrawingapp.shapes.impl.Canvas;
@@ -30,7 +28,7 @@ public class ConsoleDrawingAppApplication {
 				try {
 					Command command = CommandFactory.getCommand(userInput, sc);
 					app.processCommand(command);
-				} catch (InvalidCommandException | InvalidBoundaryException | CanvasNotFoundException ex) {
+				} catch (InvalidCommandException | InvalidBoundaryException | CanvasNotFoundException | InvalidShapeException ex) {
 					System.out.println(ex.getMessage());
 				}
 			}
