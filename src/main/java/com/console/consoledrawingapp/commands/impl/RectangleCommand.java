@@ -5,7 +5,6 @@ import com.console.consoledrawingapp.exception.InvalidCommandException;
 
 public class RectangleCommand implements Command {
 
-    private String[] commands;
     private int x1;
     private int y1;
     private int x2;

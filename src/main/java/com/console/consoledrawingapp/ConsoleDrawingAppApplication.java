@@ -12,10 +12,6 @@ import com.console.consoledrawingapp.commands.impl.QuitCommand;
 import com.console.consoledrawingapp.commands.impl.RectangleCommand;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-
 // @SpringBootApplication
 public class ConsoleDrawingAppApplication {
 
