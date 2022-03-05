@@ -41,13 +41,12 @@ public class ConsoleDrawingAppApplication {
 	public void processCommand(Command command) {
 
 		if (command instanceof QuitCommand) {
-			command.execute();
+			QuitCommand quitCommand = (QuitCommand) command;
+			quitCommand.execute();
 		} else if (command instanceof CanvasCommand) {
 			CanvasCommand canvasCommad = (CanvasCommand) command;
 			this.canvas = new Canvas(canvasCommad.getWidth(), canvasCommad.getHeight());
 			this.canvas.createCanvas();
-		} else if (command instanceof QuitCommand) {
-			command.execute();
 		} else if (command instanceof LineCommand) {
 			LineCommand lineCommand = (LineCommand) command;
 			int x1 = lineCommand.getX1();

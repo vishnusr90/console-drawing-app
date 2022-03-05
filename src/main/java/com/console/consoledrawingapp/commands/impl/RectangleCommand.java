@@ -1,6 +1,7 @@
 package com.console.consoledrawingapp.commands.impl;
 
 import com.console.consoledrawingapp.commands.Command;
+import com.console.consoledrawingapp.exception.InvalidCommandException;
 
 public class RectangleCommand implements Command {
 
@@ -11,7 +12,9 @@ public class RectangleCommand implements Command {
     private int y2;
 
     public RectangleCommand(String[] remainingCommands) {
-        this.commands = remainingCommands;
+        if (!isValidCommand(remainingCommands)) {
+            throw new InvalidCommandException("Please enter correct parameters for adding a rectangle command !");
+        }
         this.x1 = Integer.parseInt(remainingCommands[0]);
         this.y1 = Integer.parseInt(remainingCommands[1]);
         this.x2 = Integer.parseInt(remainingCommands[2]);
@@ -35,13 +38,12 @@ public class RectangleCommand implements Command {
     }
 
     @Override
-    public void execute() {
-        int x1 = Integer.parseInt(this.commands[0]);
-        int y1 = Integer.parseInt(this.commands[1]);
-
-        int x2 = Integer.parseInt(this.commands[2]);
-        int y2 = Integer.parseInt(this.commands[3]);
-        
+    public boolean isValidCommand(String[] commands) {
+        return commands.length == 4 
+            && commands[0] != " " 
+            && commands[1] != " " 
+            && commands[2] != " " 
+            && commands[3] != " "; 
     }
     
 }

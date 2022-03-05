@@ -26,7 +26,6 @@ public class Canvas {
         } 
         
         for(int j=1;j<(this.height+1);j++) {
-            System.out.println(j+" "+0);
             canvas[j][0] = VERTICAL;
 
             for(int m=1;m<this.width+2;m++) {
@@ -70,7 +69,6 @@ public class Canvas {
         
         if (this.canvas[y][x] == ' ') {
             this.canvas[y][x] = color;
-            printCanvas();
         }
 
         // Breadth first search
