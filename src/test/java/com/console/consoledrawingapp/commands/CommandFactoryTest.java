@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.console.consoledrawingapp.commands.impl.CanvasCommand;
 import com.console.consoledrawingapp.commands.impl.FillAreaCommand;
 import com.console.consoledrawingapp.commands.impl.LineCommand;
+import com.console.consoledrawingapp.commands.impl.QuitCommand;
 import com.console.consoledrawingapp.commands.impl.RectangleCommand;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
 
@@ -35,9 +36,10 @@ public class CommandFactoryTest {
     @Test
     public void testCanvasCommandWithIncorrect() {
         String commands = "C 20";
-        assertThrows(InvalidCommandException.class, () -> {
+        Exception exception = assertThrows(InvalidCommandException.class, () -> {
             CommandFactory.getCommand(commands, sc);
         });
+        assertEquals("Please enter correct parameters for creating canvas command !", exception.getMessage());
     }
 
     @Test
@@ -54,9 +56,10 @@ public class CommandFactoryTest {
     @Test
     public void testLineCommandIncorrect() {
         String commands = "L 20";
-        assertThrows(InvalidCommandException.class, () -> {
+        Exception exception = assertThrows(InvalidCommandException.class, () -> {
             CommandFactory.getCommand(commands, sc);
         });
+        assertEquals("Please enter correct parameters for add a line command !", exception.getMessage());
     }
 
 
@@ -74,9 +77,10 @@ public class CommandFactoryTest {
     @Test
     public void testRectangleCommandWithIncorrectCommands() {
         String commands = "R";
-        assertThrows(InvalidCommandException.class, () -> {
+        Exception exception = assertThrows(InvalidCommandException.class, () -> {
             CommandFactory.getCommand(commands, sc);
         });
+        assertEquals("Please enter correct parameters for adding a rectangle command !", exception.getMessage());
     }
 
     @Test
@@ -92,8 +96,16 @@ public class CommandFactoryTest {
     @Test
     public void testFillAreaCommandWithIncorrectCommands() {
         String commands = "B";
-        assertThrows(InvalidCommandException.class, () -> {
+        Exception exception = assertThrows(InvalidCommandException.class, () -> {
             CommandFactory.getCommand(commands, sc);
         });
+        assertEquals("Please enter correct parameters for filling area command !", exception.getMessage());
+    }
+
+    @Test
+    public void testQuitCommandWithCorrectCommands() {
+        String commands = "Q";
+        Command command = CommandFactory.getCommand(commands, sc);
+        assertTrue(command instanceof QuitCommand);
     }
 }

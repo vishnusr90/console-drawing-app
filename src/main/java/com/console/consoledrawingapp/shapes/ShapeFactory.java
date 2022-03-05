@@ -27,6 +27,6 @@ public class ShapeFactory {
             FillAreaCommand fillAreaCommand = (FillAreaCommand) command;
             return new BucketFill(fillAreaCommand.getX(), fillAreaCommand.getY(), fillAreaCommand.getColor());
         } 
-        throw new InvalidShapeException("Invalid shape encountered  !");
+        throw new InvalidShapeException("Invalid shape encountered !");
     }
 }

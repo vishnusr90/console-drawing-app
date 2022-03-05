@@ -12,6 +12,8 @@ public class Canvas implements Shape{
     private final char LINE = 'x';
     private final char EMPTY_SPACE = ' ';
 
+    public Canvas() { }
+    
     public Canvas(int width, int height) {
         this.width = width;
         this.height = height;

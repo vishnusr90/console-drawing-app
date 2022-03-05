@@ -35,7 +35,7 @@ public class ConsoleDrawingAppApplication {
 		}
 	}
 
-	public void processCommand(Command command) {
+	private void processCommand(Command command) {
 		if (command instanceof QuitCommand) {
 			QuitCommand quitCommand = (QuitCommand) command;
 			quitCommand.execute();

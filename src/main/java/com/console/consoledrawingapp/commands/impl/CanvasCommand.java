@@ -7,9 +7,11 @@ public class CanvasCommand implements Command {
     private int width;
     private int height;
 
+    public CanvasCommand() { }
+    
     public CanvasCommand(String[] remainingCommands) {
         if (!isValidCommand(remainingCommands)) {
-            throw new InvalidCommandException("Please enter correct parameters for creating canvas command!");
+            throw new InvalidCommandException("Please enter correct parameters for creating canvas command !");
         }
         this.width = Integer.parseInt(remainingCommands[0]);
         this.height = Integer.parseInt(remainingCommands[1]);
