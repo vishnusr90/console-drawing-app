@@ -1,5 +1,6 @@
 package com.console.consoledrawingapp.shapes.impl;
 
+import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.Shape;
 
 public class Line implements Shape {
@@ -13,6 +14,9 @@ public class Line implements Shape {
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+        if (!isValidShape()) {
+            throw new InvalidShapeException("Invalid coordinates for line !");
+        }
     }
     
     public int getX1() {
@@ -36,6 +40,7 @@ public class Line implements Shape {
         return x1 >= 1 
             && x2 >= 1
             && y1 >= 1
-            && y2 >= 1;
+            && y2 >= 1
+            && (x1 == x2 || y1 == y2);
     }
 }

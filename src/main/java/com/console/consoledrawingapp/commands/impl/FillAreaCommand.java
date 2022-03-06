@@ -2,6 +2,8 @@ package com.console.consoledrawingapp.commands.impl;
 
 import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
+import com.console.consoledrawingapp.shapes.Shape;
+import com.console.consoledrawingapp.shapes.impl.BucketFill;
 
 public class FillAreaCommand implements Command {
     private int x;
@@ -35,5 +37,10 @@ public class FillAreaCommand implements Command {
             && commands[0] != " " 
             && commands[1] != " " 
             && commands[2] != " ";
+    }
+
+    @Override
+    public Shape getShape() {
+        return new BucketFill(x, y, color);
     }
 }

@@ -3,7 +3,7 @@ package com.console.consoledrawingapp.shapes.impl;
 import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.Shape;
 
-public class Canvas implements Shape{
+public class Canvas implements Shape {
     private char[][] canvas;
     private int width;
     private int height;
@@ -18,6 +18,9 @@ public class Canvas implements Shape{
         this.width = width;
         this.height = height;
         this.canvas = new char[height+2][width+2];
+        if (!isValidShape()) {
+            throw new InvalidShapeException("Invalid coordinates for canvas !");
+        }
     }
 
     public int getX() {
@@ -32,16 +35,15 @@ public class Canvas implements Shape{
         if (shape instanceof Line) {
             Line line = (Line) shape;
             addLine(line.getX1(), line.getY1(), line.getX2(), line.getY2());
-            this.printCanvas();
         } else if (shape instanceof Rectangle) {
             Rectangle rectangle = (Rectangle) shape;
             addRectangle(rectangle.getX1(), rectangle.getY1(), rectangle.getX2(), rectangle.getY2());
-            this.printCanvas();
         } else if (shape instanceof BucketFill) {
             BucketFill bucket = (BucketFill) shape;
             fillCanvas(bucket.getX(), bucket.getY(), bucket.getColor());
-            this.printCanvas();
+            
         }
+        this.printCanvas();
     }
 
     public char[][] createCanvas() {
@@ -67,7 +69,7 @@ public class Canvas implements Shape{
         return canvas;
     }
 
-    public void addLine(int x1, int y1, int x2, int y2) {
+    public char[][] addLine(int x1, int y1, int x2, int y2) {
         if (!isValidLine(x1, y1, x2, y2)) {
             throw new InvalidShapeException("Please enter correct coordinates !");
         }
@@ -76,6 +78,7 @@ public class Canvas implements Shape{
                 canvas[i][j] = LINE;
             }
         }
+        return canvas;
     }
 
     public void addRectangle(int x1, int y1, int x2, int y2) {
@@ -101,16 +104,20 @@ public class Canvas implements Shape{
         fillCanvas(x, y-1, color);
     }
  
-    public void printCanvas() {
+    public String printCanvas() {
         int m = canvas.length;
         int n = canvas[0].length;
+        StringBuilder sb = new StringBuilder();
 
         for(int i=0;i<m;i++) {
             for(int j=0;j<n;j++) {
                 System.out.print(canvas[i][j]);
+                sb.append(canvas[i][j]);
             }
+            sb.append("\n");
             System.out.println("");
         }
+        return sb.toString();
     }
 
     public boolean isValidAreaToFill(int x, int y) {
@@ -125,13 +132,13 @@ public class Canvas implements Shape{
             && x2 >=1 
             && x2 < (this.width+2)
             && y1 >= 1
-            && y1 < (this.width+2)
+            && y1 < (this.height+2)
             && y2 >=1 
-            && y2 < (this.width+2);
+            && y2 < (this.height+2);
     }
 
     @Override
     public boolean isValidShape() {
-        return false;
+        return width >= 1 && height >= 1;
     }
 }

@@ -1,5 +1,6 @@
 package com.console.consoledrawingapp.shapes.impl;
 
+import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.Shape;
 
 public class BucketFill implements Shape {
@@ -11,6 +12,9 @@ public class BucketFill implements Shape {
         this.x = x;
         this.y = y;
         this.color = color;
+        if (!isValidShape()) {
+            throw new InvalidShapeException("Invalid parameters for bucket fill !");
+        }
     }
 
     public int getX() {

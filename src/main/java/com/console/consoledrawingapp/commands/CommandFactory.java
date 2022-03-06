@@ -22,7 +22,7 @@ public class CommandFactory {
             case "l": return new LineCommand(remainingCommands);
             case "r": return new RectangleCommand(remainingCommands);
             case "b": return new FillAreaCommand(remainingCommands);
-            case "q": return new QuitCommand(sc);
+            case "q": new QuitCommand(sc).execute();
             default:
                 throw new InvalidCommandException("Please enter correct commands !");
         }

@@ -30,16 +30,15 @@ public class ConsoleDrawingAppApplication {
 					app.processCommand(command);
 				} catch (InvalidCommandException | InvalidBoundaryException | CanvasNotFoundException | InvalidShapeException ex) {
 					System.out.println(ex.getMessage());
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
 				}
 			}
 		}
 	}
 
-	private void processCommand(Command command) {
-		if (command instanceof QuitCommand) {
-			QuitCommand quitCommand = (QuitCommand) command;
-			quitCommand.execute();
-		} else if (command instanceof CanvasCommand) {
+	public void processCommand(Command command) {
+		if (command instanceof CanvasCommand) {
 			Shape shape = ShapeFactory.getShape(command);
 			this.canvas = (Canvas) shape;
 			this.canvas.createCanvas();

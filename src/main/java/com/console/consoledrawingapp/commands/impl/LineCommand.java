@@ -2,6 +2,8 @@ package com.console.consoledrawingapp.commands.impl;
 
 import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
+import com.console.consoledrawingapp.shapes.Shape;
+import com.console.consoledrawingapp.shapes.impl.Line;
 
 public class LineCommand implements Command {
     private int x1;
@@ -42,5 +44,10 @@ public class LineCommand implements Command {
             && commands[1] != " " 
             && commands[2] != " " 
             && commands[3] != " "; 
+    }
+
+    @Override
+    public Shape getShape() {
+        return new Line(x1, y1, x2, y2);
     }
 }

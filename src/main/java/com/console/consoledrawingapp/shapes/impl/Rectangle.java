@@ -1,5 +1,6 @@
 package com.console.consoledrawingapp.shapes.impl;
 
+import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.Shape;
 
 public class Rectangle implements Shape {
@@ -13,6 +14,9 @@ public class Rectangle implements Shape {
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+        if (!isValidShape()) {
+            throw new InvalidShapeException("Invalid coordinates for rectangle !");
+        }
     }
 
     public int getX1() {

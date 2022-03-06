@@ -2,6 +2,8 @@ package com.console.consoledrawingapp.commands.impl;
 
 import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
+import com.console.consoledrawingapp.shapes.Shape;
+import com.console.consoledrawingapp.shapes.impl.Canvas;
 
 public class CanvasCommand implements Command {
     private int width;
@@ -30,5 +32,10 @@ public class CanvasCommand implements Command {
         return commands.length == 2 
             && commands[0] != " " 
             && commands[1] != " ";  
+    }
+
+    @Override
+    public Shape getShape() {
+        return new Canvas(width, height);
     }
 }
