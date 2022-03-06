@@ -5,7 +5,6 @@ import java.util.Scanner;
 import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.commands.CommandFactory;
 import com.console.consoledrawingapp.commands.impl.CanvasCommand;
-import com.console.consoledrawingapp.commands.impl.QuitCommand;
 import com.console.consoledrawingapp.exception.CanvasNotFoundException;
 import com.console.consoledrawingapp.exception.InvalidBoundaryException;
 import com.console.consoledrawingapp.exception.InvalidCommandException;

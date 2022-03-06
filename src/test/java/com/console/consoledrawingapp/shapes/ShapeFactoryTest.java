@@ -1,13 +1,11 @@
 package com.console.consoledrawingapp.shapes;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.console.consoledrawingapp.commands.impl.CanvasCommand;
 import com.console.consoledrawingapp.commands.impl.FillAreaCommand;
 import com.console.consoledrawingapp.commands.impl.LineCommand;
 import com.console.consoledrawingapp.commands.impl.RectangleCommand;
-import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.impl.BucketFill;
 import com.console.consoledrawingapp.shapes.impl.Canvas;
 import com.console.consoledrawingapp.shapes.impl.Line;
