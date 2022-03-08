@@ -8,6 +8,7 @@ import com.console.consoledrawingapp.commands.impl.LineCommand;
 import com.console.consoledrawingapp.exception.CanvasNotFoundException;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 // @SpringBootTest
@@ -24,6 +25,7 @@ class ConsoleDrawingAppApplicationTests {
 	}
 
 	@Test
+	@DisplayName("test creating shape without canvas")
 	public void testCreatingShapeWithoutCanvas() {
 		String[] commands = {"1", "2", "3", "4"};
 		Command command = new LineCommand(commands);

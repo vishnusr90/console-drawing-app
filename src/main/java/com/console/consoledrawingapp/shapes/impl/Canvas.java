@@ -41,7 +41,6 @@ public class Canvas implements Shape {
         } else if (shape instanceof BucketFill) {
             BucketFill bucket = (BucketFill) shape;
             fillCanvas(bucket.getX(), bucket.getY(), bucket.getColor());
-            
         }
         this.printCanvas();
     }

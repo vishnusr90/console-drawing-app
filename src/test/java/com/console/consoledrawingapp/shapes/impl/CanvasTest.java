@@ -3,6 +3,7 @@ package com.console.consoledrawingapp.shapes.impl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CanvasTest {
@@ -15,6 +16,7 @@ public class CanvasTest {
     }
 
     @Test
+    @DisplayName("test canvas creation")
 	public void testCreatingCanvas() {
 		char[][] testCanvas = canvas.createCanvas();
         assertEquals(6, testCanvas.length);
@@ -29,6 +31,7 @@ public class CanvasTest {
 	}
 
     @Test
+    @DisplayName("test line creation - 1")
     public void testCreatingLine1() {
         canvas.createCanvas();
         canvas.addLine(1, 2, 6, 2);
@@ -42,6 +45,7 @@ public class CanvasTest {
     }   
     
     @Test
+    @DisplayName("test line creation - 2")
     public void testCreatingLine2() {
         canvas.createCanvas();
         canvas.addLine(6, 3, 6, 4);
@@ -55,6 +59,7 @@ public class CanvasTest {
     }
 
     @Test
+    @DisplayName("test rectangle creation")
     public void testCreatingRectangle() {
         canvas.createCanvas();
         canvas.addRectangle(14, 1, 18, 3);
@@ -68,6 +73,7 @@ public class CanvasTest {
     }
 
     @Test
+    @DisplayName("test bucket fill creation")
     public void testCreatingBucketFill() {
         canvas.createCanvas();
         canvas.addRectangle(14, 1, 18, 3);

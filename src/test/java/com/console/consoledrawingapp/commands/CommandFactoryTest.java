@@ -9,11 +9,11 @@ import java.util.Scanner;
 import com.console.consoledrawingapp.commands.impl.CanvasCommand;
 import com.console.consoledrawingapp.commands.impl.FillAreaCommand;
 import com.console.consoledrawingapp.commands.impl.LineCommand;
-import com.console.consoledrawingapp.commands.impl.QuitCommand;
 import com.console.consoledrawingapp.commands.impl.RectangleCommand;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CommandFactoryTest {
@@ -25,6 +25,7 @@ public class CommandFactoryTest {
     }
 
     @Test
+    @DisplayName("test canvas command with correct parameters")
     public void testCanvasCommandWithCorrectCommands() {
         String commands = "C 20 4";
         Command command = CommandFactory.getCommand(commands, sc);
@@ -34,6 +35,7 @@ public class CommandFactoryTest {
     }
 
     @Test
+    @DisplayName("test canvas command with incorrect parameters")
     public void testCanvasCommandWithIncorrect() {
         String commands = "C 20";
         Exception exception = assertThrows(InvalidCommandException.class, () -> {
@@ -43,6 +45,7 @@ public class CommandFactoryTest {
     }
 
     @Test
+    @DisplayName("test line command with correct parameters")
     public void testLineCommandWithCorrectCommands() {
         String commands = "L 1 2 6 2";
         Command command = CommandFactory.getCommand(commands, sc);
@@ -54,6 +57,7 @@ public class CommandFactoryTest {
     }
 
     @Test
+    @DisplayName("test line command with incorrect parameters")
     public void testLineCommandIncorrect() {
         String commands = "L 20";
         Exception exception = assertThrows(InvalidCommandException.class, () -> {
@@ -64,6 +68,7 @@ public class CommandFactoryTest {
 
 
     @Test
+    @DisplayName("test rectangle command with correct parameters")
     public void testRectangleCommandWithCorrectCommands() {
         String commands = "R 14 1 18 3";
         Command command = CommandFactory.getCommand(commands, sc);
@@ -75,6 +80,7 @@ public class CommandFactoryTest {
     }
 
     @Test
+    @DisplayName("test rectangle command with incorrect parameters")
     public void testRectangleCommandWithIncorrectCommands() {
         String commands = "R";
         Exception exception = assertThrows(InvalidCommandException.class, () -> {
@@ -84,6 +90,7 @@ public class CommandFactoryTest {
     }
 
     @Test
+    @DisplayName("test fill area command with correct parameters")
     public void testFillAreaCommandWithCorrectCommands() {
         String commands = "B 10 3 o";
         Command command = CommandFactory.getCommand(commands, sc);
@@ -94,18 +101,12 @@ public class CommandFactoryTest {
     }
 
     @Test
+    @DisplayName("test fill area command with incorrect parameters")
     public void testFillAreaCommandWithIncorrectCommands() {
         String commands = "B";
         Exception exception = assertThrows(InvalidCommandException.class, () -> {
             CommandFactory.getCommand(commands, sc);
         });
         assertEquals("Please enter correct parameters for filling area command !", exception.getMessage());
-    }
-
-    @Test
-    public void testQuitCommandWithCorrectCommands() {
-        String commands = "Q";
-        Command command = CommandFactory.getCommand(commands, sc);
-        assertTrue(command instanceof QuitCommand);
     }
 }
