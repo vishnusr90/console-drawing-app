@@ -5,7 +5,7 @@
  - Import the dependencies (pom.xml)
  - Start the application (F5)
 
-## Features
+## Features/ Assumptions
  - Canvas has to be created first before we can add any line/rectangle or bucket fill
  - Commands are sanitized before implementing (handling of extra spaces at the front and back)
  - Detailed test cases have been written
