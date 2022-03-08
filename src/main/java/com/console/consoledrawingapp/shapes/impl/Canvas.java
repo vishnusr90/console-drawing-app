@@ -72,8 +72,8 @@ public class Canvas implements Shape {
         // sanitize the values
         x1 = x1 >= (this.width+1) ? this.width : x1;
         x2 = x2 >= (this.width+1) ? this.width : x2;
-        y1 = y1 >= (this.width+1) ? this.height : y1;
-        y2 = y2 >= (this.width+1) ? this.height : y2;
+        y1 = y1 >= (this.height+1) ? this.height : y1;
+        y2 = y2 >= (this.height+1) ? this.height : y2;
         
         for(int i=y1; i<=y2;i++) {
             for(int j =x1;j<=x2;j++) {
