@@ -13,7 +13,8 @@ import com.console.consoledrawingapp.exception.InvalidCommandException;
 public class CommandFactory {
     
     public static Command getCommand(String userInput, Scanner sc) {
-        String[] input = userInput.split(" ");
+        String sanitizedCommand = CommandFactory.sanitizeCommand(userInput);
+        String[] input = sanitizedCommand.split(" ");
         String mainCommand = input[0].toLowerCase();
         String[] remainingCommands = Arrays.copyOfRange(input, 1, input.length);
 
@@ -27,4 +28,9 @@ public class CommandFactory {
                 throw new InvalidCommandException("Please enter correct commands !");
         }
     }
+
+    
+	private static String sanitizeCommand(String command) {
+		return command != null ? command.trim() : "";
+	}
 }
