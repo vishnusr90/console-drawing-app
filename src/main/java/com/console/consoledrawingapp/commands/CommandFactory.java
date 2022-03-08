@@ -10,6 +10,9 @@ import com.console.consoledrawingapp.commands.impl.FillAreaCommand;
 import com.console.consoledrawingapp.commands.impl.QuitCommand;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
 
+import org.apache.commons.lang3.StringUtils;
+
+
 public class CommandFactory {
     
     public static Command getCommand(String userInput, Scanner sc) {
@@ -29,8 +32,7 @@ public class CommandFactory {
         }
     }
 
-    
 	private static String sanitizeCommand(String command) {
-		return command != null ? command.trim() : "";
+		return StringUtils.isNotBlank(command) ? command.trim() : "";
 	}
 }
