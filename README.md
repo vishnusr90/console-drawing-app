@@ -7,6 +7,8 @@
 
 ## Features/ Assumptions
  - Canvas has to be created first before we can add any line/rectangle or bucket fill
+ - Only horizontal and vertical lines can be created
+ - Only lines within the canvas boundary can be drawn
  - Commands are sanitized before implementing (handling of extra spaces at the front and back)
  - Detailed test cases have been written
 

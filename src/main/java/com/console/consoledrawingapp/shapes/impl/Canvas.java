@@ -70,11 +70,12 @@ public class Canvas implements Shape {
 
     public char[][] addLine(int x1, int y1, int x2, int y2) {
         if (!isValidLine(x1, y1, x2, y2)) {
-            throw new InvalidShapeException("Please enter correct coordinates !");
+            throw new InvalidShapeException("Please enter correct coordinates for line !");
         }
         for(int i=y1; i<=y2;i++) {
             for(int j =x1;j<=x2;j++) {
-                canvas[i][j] = LINE;
+                if (canvas[i][j] != HORIZONTAL && canvas[i][j] != VERTICAL)
+                    canvas[i][j] = LINE;    
             }
         }
         return canvas;
@@ -88,15 +89,12 @@ public class Canvas implements Shape {
     }
 
     public void fillCanvas(int x, int y, char color) {
-        if (!isValidAreaToFill(x, y)) {
+        if (!isValidAreaToFill(x, y, color)) {
             return;
         }
 
-        if (this.canvas[y][x] == ' ') {
-            this.canvas[y][x] = color;
-        }
+        this.canvas[y][x] = color;
 
-        // Breadth first search
         fillCanvas(x+1, y, color);
         fillCanvas(x-1, y, color);
         fillCanvas(x, y+1, color);
@@ -119,21 +117,24 @@ public class Canvas implements Shape {
         return sb.toString();
     }
 
-    public boolean isValidAreaToFill(int x, int y) {
-        return x >=1 && x < (this.width+2)
-                && y >=1 && y < (this.height+2) 
-                && this.canvas[y][x] == ' ';
+    public boolean isValidAreaToFill(int x, int y, char color) {
+        return x >=1 && x < (this.width+1)
+                && y >=1 && y < (this.height+1)
+                && this.canvas[y][x] != color
+                && this.canvas[y][x] != LINE
+                && this.canvas[y][x] != VERTICAL 
+                && this.canvas[y][x] != HORIZONTAL;
     }
 
     public boolean isValidLine(int x1, int y1, int x2, int y2) {
         return x1 >= 1
-            && x1 < (this.width+2)
+            && x1 < (this.width+1)
             && x2 >=1 
-            && x2 < (this.width+2)
+            && x2 < (this.width+1)
             && y1 >= 1
-            && y1 < (this.height+2)
+            && y1 < (this.height+1)
             && y2 >=1 
-            && y2 < (this.height+2);
+            && y2 < (this.height+1);
     }
 
     @Override

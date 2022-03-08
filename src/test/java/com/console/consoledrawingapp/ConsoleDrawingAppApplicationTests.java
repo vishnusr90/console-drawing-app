@@ -15,9 +15,6 @@ import org.junit.jupiter.api.Test;
 class ConsoleDrawingAppApplicationTests {
 
 	private ConsoleDrawingAppApplication app;
-	@Test
-	void contextLoads() {
-	}
 
 	@BeforeEach
 	public void init() {
