@@ -69,9 +69,12 @@ public class Canvas implements Shape {
     }
 
     public char[][] addLine(int x1, int y1, int x2, int y2) {
-        if (!isValidLine(x1, y1, x2, y2)) {
-            throw new InvalidShapeException("Please enter correct coordinates for line !");
-        }
+        // sanitize the values
+        x1 = x1 >= (this.width+1) ? this.width : x1;
+        x2 = x2 >= (this.width+1) ? this.width : x2;
+        y1 = y1 >= (this.width+1) ? this.height : y1;
+        y2 = y2 >= (this.width+1) ? this.height : y2;
+        
         for(int i=y1; i<=y2;i++) {
             for(int j =x1;j<=x2;j++) {
                 if (canvas[i][j] != HORIZONTAL && canvas[i][j] != VERTICAL)
@@ -124,17 +127,6 @@ public class Canvas implements Shape {
                 && this.canvas[y][x] != LINE
                 && this.canvas[y][x] != VERTICAL 
                 && this.canvas[y][x] != HORIZONTAL;
-    }
-
-    public boolean isValidLine(int x1, int y1, int x2, int y2) {
-        return x1 >= 1
-            && x1 < (this.width+1)
-            && x2 >=1 
-            && x2 < (this.width+1)
-            && y1 >= 1
-            && y1 < (this.height+1)
-            && y2 >=1 
-            && y2 < (this.height+1);
     }
 
     @Override
