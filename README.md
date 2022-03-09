@@ -1,9 +1,16 @@
 # A simple console drawing application
 
 ## Steps to start application
+ ### 1
  - Import the code in visual code or any other IDE
  - Import the dependencies (pom.xml)
  - Start the application (F5)
+
+ ### 2
+ - Import the code in visual code or any other IDE
+ - Run **mvn clean package** in command line
+ - Move to the **target** folder
+ - Run **java -jar .\console-drawing-app-1.0.jar**
 
 ## Features/ Assumptions
  - Canvas has to be created first before we can add any line/rectangle or bucket fill
