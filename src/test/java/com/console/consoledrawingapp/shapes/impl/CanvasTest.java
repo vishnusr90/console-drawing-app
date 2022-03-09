@@ -1,6 +1,9 @@
 package com.console.consoledrawingapp.shapes.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import com.console.consoledrawingapp.exception.OutsideBoundaryException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -59,10 +62,38 @@ public class CanvasTest {
     }
 
     @Test
+    @DisplayName("test line creation with reverse- 3")
+    public void testCreatingLine3() {
+        canvas.createCanvas();
+        canvas.addLine(6, 4, 6, 3);
+        String canvasTest = canvas.printCanvas();
+        assertEquals("----------------------\n"+
+                     "|                    |\n"+
+                     "|                    |\n"+
+                     "|     x              |\n"+
+                     "|     x              |\n"+
+                     "----------------------\n", canvasTest);
+    }
+
+    @Test
     @DisplayName("test rectangle creation")
     public void testCreatingRectangle() {
         canvas.createCanvas();
         canvas.addRectangle(14, 1, 18, 3);
+        String canvasTest = canvas.printCanvas();
+        assertEquals("----------------------\n"+
+                     "|             xxxxx  |\n"+
+                     "|             x   x  |\n"+
+                     "|             xxxxx  |\n"+
+                     "|                    |\n"+
+                     "----------------------\n", canvasTest);
+    }
+
+    @Test
+    @DisplayName("test rectangle creation from reverse direction")
+    public void testCreatingRectangleWithReverse() {
+        canvas.createCanvas();
+        canvas.addRectangle(18, 3, 14, 1);
         String canvasTest = canvas.printCanvas();
         assertEquals("----------------------\n"+
                      "|             xxxxx  |\n"+
@@ -85,5 +116,15 @@ public class CanvasTest {
                      "|oooooooooooooxxxxxoo|\n"+
                      "|oooooooooooooooooooo|\n"+
                      "----------------------\n", canvasTest);
+    }
+
+    @Test 
+    @DisplayName("test when coordinates are not within canvas boundary")
+    public void testOutsideBoundaryCoordinates() {
+        canvas.createCanvas();
+        Exception exception = assertThrows(OutsideBoundaryException.class, () -> {
+            canvas.addLine(40, 40, 1, 1);
+        });
+        assertEquals("Initial coordinates are outside the canvas !", exception.getMessage());
     }
 }

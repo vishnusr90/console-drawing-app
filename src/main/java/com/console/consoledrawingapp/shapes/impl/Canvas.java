@@ -1,5 +1,6 @@
 package com.console.consoledrawingapp.shapes.impl;
 
+import com.console.consoledrawingapp.exception.OutsideBoundaryException;
 import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.Shape;
 
@@ -69,26 +70,51 @@ public class Canvas implements Shape {
     }
 
     public char[][] addLine(int x1, int y1, int x2, int y2) {
-        // sanitize the values
-        x1 = x1 >= (this.width+1) ? this.width : x1;
-        x2 = x2 >= (this.width+1) ? this.width : x2;
-        y1 = y1 >= (this.height+1) ? this.height : y1;
-        y2 = y2 >= (this.height+1) ? this.height : y2;
-        
-        for(int i=y1; i<=y2;i++) {
-            for(int j =x1;j<=x2;j++) {
-                if (canvas[i][j] != HORIZONTAL && canvas[i][j] != VERTICAL)
-                    canvas[i][j] = LINE;    
+        if (x1 <= this.width && y1 <= this.height) {
+            // sanitize the values
+            x2 = x2 >= (this.width+1) ? this.width : x2;
+            y2 = y2 >= (this.height+1) ? this.height : y2;
+
+            // handle condition when initial coordinates are greater in value
+            if (x1 > x2) {
+                int temp = x1;
+                x1 = x2;
+                x2 = temp;
             }
+            if (y1 > y2) {
+                int temp = y1;
+                y1 = y2;
+                y2 = temp;
+            }
+            
+            for(int i=y1; i<=y2;i++) {
+                for(int j =x1;j<=x2;j++) {
+                    if (canvas[i][j] != HORIZONTAL && canvas[i][j] != VERTICAL)
+                        canvas[i][j] = LINE;    
+                }
+            }
+        } else {
+            throw new OutsideBoundaryException("Initial coordinates are outside the canvas !");
         }
         return canvas;
     }
 
     public void addRectangle(int x1, int y1, int x2, int y2) {
-        addLine(x1, y1, x2, y1);
-        addLine(x1, y1, x1, y2);
-        addLine(x2, y1, x2, y2);
-        addLine(x1, y2, x2, y2);
+        if (y1 >= 1) {
+            addLine(x1, y1, x2, y1); // top line
+        }
+
+        if (x1 >= 1) {
+            addLine(x1, y1, x1, y2); // left line
+        }
+        
+        if (x2 <= this.width) {
+            addLine(x2, y1, x2, y2); // right line
+        }
+        
+        if (y2 <= this.height) {
+            addLine(x1, y2, x2, y2); // bottom line
+        }
     }
 
     public void fillCanvas(int x, int y, char color) {

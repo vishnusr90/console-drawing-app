@@ -6,7 +6,7 @@ import com.console.consoledrawingapp.commands.Command;
 import com.console.consoledrawingapp.commands.CommandFactory;
 import com.console.consoledrawingapp.commands.impl.CanvasCommand;
 import com.console.consoledrawingapp.exception.CanvasNotFoundException;
-import com.console.consoledrawingapp.exception.InvalidBoundaryException;
+import com.console.consoledrawingapp.exception.OutsideBoundaryException;
 import com.console.consoledrawingapp.exception.InvalidCommandException;
 import com.console.consoledrawingapp.exception.InvalidShapeException;
 import com.console.consoledrawingapp.shapes.Shape;
@@ -27,7 +27,7 @@ public class ConsoleDrawingAppApplication {
 				try {
 					Command command = CommandFactory.getCommand(userInput, sc);
 					app.processCommand(command);
-				} catch (InvalidCommandException | InvalidBoundaryException | CanvasNotFoundException | InvalidShapeException ex) {
+				} catch (InvalidCommandException | OutsideBoundaryException | CanvasNotFoundException | InvalidShapeException ex) {
 					System.out.println(ex.getMessage());
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
