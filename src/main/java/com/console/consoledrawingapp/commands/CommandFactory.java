@@ -12,7 +12,9 @@ import com.console.consoledrawingapp.exception.InvalidCommandException;
 
 import org.apache.commons.lang3.StringUtils;
 
-
+/**
+ * This factory will accept commands and return the corresponding command object
+ */
 public class CommandFactory {
     
     public static Command getCommand(String userInput, Scanner sc) {
